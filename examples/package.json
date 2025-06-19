@@ -1,0 +1,15 @@
+{
+  "name": "zksync-signature-test",
+  "version": "1.0.0",
+  "description": "ZKsync EIP712 signature comparison test",
+  "main": "sign_comparison.js",
+  "scripts": {
+    "test": "node sign_comparison.js"
+  },
+  "dependencies": {
+    "zksync-ethers": "^6.0.0",
+    "ethers": "^6.0.0"
+  },
+  "author": "",
+  "license": "MIT"
+} 
