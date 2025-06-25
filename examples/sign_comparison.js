@@ -11,7 +11,20 @@ async function signZkSyncTransaction() {
   // 首先获取私钥对应的地址
   const wallet = new ethers.Wallet(PRIVATE_KEY);
   const fromAddress = wallet.address;
-  
+  const type = "General";
+  const paymasterParams = utils.getPaymasterParams(
+    "0xcD98460B5DFC3A59FB9AEa2cb8B06732Ad651C64",
+    {
+      type,
+      innerInput: utils.getGeneralPaymasterInput({
+        type,
+        innerInput: "0xb35577ef6b240abb4bf534c2e2ac0065ae648814290407e6d55a39da69383ea27bb4b57cee9380883beca84085ea882642baac9eaa1c9a1dcebabe441b8092d41b", // Any additional info to send to the paymaster. We leave it empty here.
+      })
+    }
+  );
+  console.log("wtf");
+  console.log(paymasterParams);
+
   const txParams = {
     from: fromAddress, // 使用私钥对应的实际地址
     to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
@@ -29,10 +42,8 @@ async function signZkSyncTransaction() {
       paymasterParams: utils.getPaymasterParams(
         "0xa222f0c183AFA73a8Bc1AFb48D34C88c9Bf7A174",
         {
-          type: "approvalBased",
-          token: "0x841c43fa5d8fffdb9efe3358906f7578d8700dd4",
-          minimalAllowance: 1n,
-          innerInput: new Uint8Array(),
+          type: "General",
+          innerInput: new Uint8Array([1,2,3,4,5,6]),
         }
       ),
     },
